@@ -51,6 +51,26 @@ defmodule Starscraper do
         IO.inspect reason
     end
   end
+
+  def get_constellation() do
+    #creating a Floki Selector here
+    #select = %Floki.Selector{}
+    case HTTPoison.get("https://en.wikipedia.org/wiki/Former_constellation") do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        {:ok, document} = Floki.parse_document(body)
+        names = 
+          document
+          |> Floki.find("tbody tr td:first-of-type")
+          |> Enum.map(&elem(&1, 2) |> Enum.fetch!(0))
+        #&Enum.fetch!(&1, 2)
+        {:ok, names}
+
+      {:ok, %HTTPoison.Response{status_code: 404}} ->
+        IO.puts("Not found")
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        IO.inspect reason
+    end
+  end
   
   #Below are common helper functions
   def extract_names(l) do
