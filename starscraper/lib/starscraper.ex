@@ -34,9 +34,39 @@ defmodule Starscraper do
     end
   end
 
+  def get_common_glossary() do
+    case HTTPoison.get("https://skyandtelescope.org/astronomy-terms/") do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        {:ok, document} = Floki.parse_document(body)
+        names = 
+          document
+          |> Floki.find("p strong")
+          |> Enum.map(&elem(&1, 2) |> Enum.fetch!(0))
+        #&Enum.fetch!(&1, 2)
+        {:ok, names}
+
+      {:ok, %HTTPoison.Response{status_code: 404}} ->
+        IO.puts("Not found")
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        IO.inspect reason
+    end
+  end
+  
+  #Below are common helper functions
   def extract_names(l) do
     Enum.map(l, fn a -> 
         cond do
+          is_binary(a) -> a
+          is_tuple(a) -> 
+            case elem(a, 2) |> Enum.fetch(0) do
+              {:ok, something} -> something
+              _ -> ""
+            end
+          is_list(a) -> 
+            case Enum.fetch(a, 0) do
+              {:ok, something} -> something
+              _ -> ""
+            end
           is_tuple(Enum.fetch!(a, 0)) -> 
             outer = Enum.fetch!(a, 0) |> elem(2) |> Enum.fetch!(0)
               if is_binary(outer) do
@@ -49,7 +79,8 @@ defmodule Starscraper do
           true -> 
             Enum.fetch!(a, 0)
         end
-    end)
+    end) |> Enum.filter(
+      fn x -> is_binary(x) && String.length(x) > 0 end)
   end
 
   @doc """
