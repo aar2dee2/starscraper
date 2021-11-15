@@ -13,4 +13,4 @@ common_words = [
 ]
 
 final = spacecraft_words #++ space_glossary ++ common_words
-File.write("words2.txt", Enum.join(final, "\n"))
+File.write("words3.txt", Enum.join(final, "\n"))

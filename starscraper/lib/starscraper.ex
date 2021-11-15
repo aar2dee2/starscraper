@@ -22,7 +22,7 @@ defmodule Starscraper do
         {:ok, document} = Floki.parse_document(body)
         names = 
           document
-          |> Floki.find("i")
+          |> Floki.find("li i")
           |> Enum.map(&elem(&1, 2))
         #&Enum.fetch!(&1, 2)
         {:ok, names}
