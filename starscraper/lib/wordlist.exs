@@ -2,7 +2,7 @@
 {:ok, result} = Starscraper.get_spacecraft_name()
 names = result |> Starscraper.extract_names()
 spacecraft_words = names |> Starscraper.extract_words()
-
+IO.puts("got spacecraft names from wikipedia")
 #get common glossary from https://skyandtelescope.org/astronomy-terms/
 #Commenting out below code as it is throwing a :timeout when script s run directly. Have run the exact same code as below in iex and created space_glossary.txt
 #{:ok, glossary} = Starscraper.get_common_glossary()
@@ -12,7 +12,7 @@ spacecraft_words = names |> Starscraper.extract_words()
 {:ok, star_groups} = Starscraper.get_constellation()
 con_names = star_groups |> Starscraper.extract_names()
 constellations = con_names |> Starscraper.extract_words()
-
+IO.puts("got constellation names from wikipedia")
 #creating a list of common_words. Can be updated
 common_words = [
 "Battle", "Star", "Galactic", "Ship", "Craft", "Destroyer", "Cruiser", "Bruiser", "Black", "Hole", "Flight", "Copter", "Mighty", "Large", "Asteroid", "Lens",
@@ -25,9 +25,16 @@ doc = case File.read("space_glossary.txt") do
   end
 space_glossary =  doc |> String.split("\n")
 
+IO.puts("got space_glossary terms from .txt file")
+
 final = spacecraft_words ++ constellations ++ common_words ++ space_glossary
 
+IO.puts("got final words list")
 #using combinations to generate names from the final list
 generated = PnC.comb_helper(final, 2, 4, []) |> Enum.map(Enum.join(" "))
 
-#File.write("words3.txt", Enum.join(final, "\n"))
+IO.puts("generated spacecraft names")
+
+File.write("spaceship.txt", Enum.join(generated, "\n"))
+
+IO.puts("created spaceship.txt")
