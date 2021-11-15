@@ -87,6 +87,8 @@ defmodule Starscraper do
   get words, all with the first letter capitalized, from a list of strings where there may be single-word or multi-word string
   """
   def extract_words(l) do
-    Enum.map(l, &String.split(&1, " ")) |> List.flatten()
+    Enum.map(l, &String.split(&1, [" ", "@", "$", ",", "!", "#", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", ";", ":", "'", ".", "/", "?", "|", "\\"])) |> List.flatten() |> Enum.filter(
+      fn x -> !Regex.match?(~r{[^a-z|A-Z]}, x) && x != "" && x != " " end
+      )
   end
 end
