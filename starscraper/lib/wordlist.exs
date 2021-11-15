@@ -13,11 +13,21 @@ spacecraft_words = names |> Starscraper.extract_words()
 con_names = star_groups |> Starscraper.extract_names()
 constellations = con_names |> Starscraper.extract_words()
 
+#creating a list of common_words. Can be updated
 common_words = [
 "Battle", "Star", "Galactic", "Ship", "Craft", "Destroyer", "Cruiser", "Bruiser", "Black", "Hole", "Flight", "Copter", "Mighty", "Large", "Asteroid", "Lens",
 ]
 
-space_glossary = File.read("space_glossary.txt") |> String.split("\n")
-final = spacecraft_words ++ constellations ++ common_words 
+#getting terms from space_glossary.txt
+doc = case File.read("space_glossary.txt") do
+    {:ok, body} -> body
+    {:error, reason} -> ""
+  end
+space_glossary =  doc |> String.split("\n")
+
+final = spacecraft_words ++ constellations ++ common_words ++ space_glossary
+
+#using combinations to generate names from the final list
+
 
 #File.write("words3.txt", Enum.join(final, "\n"))
