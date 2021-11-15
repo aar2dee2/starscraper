@@ -36,13 +36,18 @@ defmodule Starscraper do
 
   def extract_names(l) do
     Enum.map(l, fn a -> 
-        if is_tuple(Enum.fetch!(a, 0)) do
-          Enum.fetch!(a, 0) |> elem(2) |> Enum.fetch!(0)
-          #Enum.fetch!(a, 0)
-        
-        else
-          #Enum.fetch!(a, 0) |> elem(2) |> Enum.fetch!(0)
-          Enum.fetch!(a, 0)
+        cond do
+          is_tuple(Enum.fetch!(a, 0)) -> 
+            outer = Enum.fetch!(a, 0) |> elem(2) |> Enum.fetch!(0)
+              if is_binary(outer) do
+                outer
+              else
+                elem(outer, 2) |> Enum.fetch!(0)
+              end
+          #is_list(Enum.fetch!(a, 0)) -> 
+            #Enum.fetch!(a, 0) |> elem(2) |> Enum.fetch!(0) |> elem(2) |> Enum.fetch!(0)
+          true -> 
+            Enum.fetch!(a, 0)
         end
     end)
   end
