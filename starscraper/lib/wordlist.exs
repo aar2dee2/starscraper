@@ -4,7 +4,7 @@ names = result |> Starscraper.extract_names()
 spacecraft_words = names |> Starscraper.extract_words()
 
 #get common glossary from https://skyandtelescope.org/astronomy-terms/
-#Commenting out below code as it is throwing a :timeout when script s run directly. Have run the exact same code as below and created space_glossary.txt
+#Commenting out below code as it is throwing a :timeout when script s run directly. Have run the exact same code as below in iex and created space_glossary.txt
 #{:ok, glossary} = Starscraper.get_common_glossary()
 #terms = glossary |> Starscraper.extract_names()
 #space_glossary = terms |> Starscraper.extract_words()
@@ -28,6 +28,6 @@ space_glossary =  doc |> String.split("\n")
 final = spacecraft_words ++ constellations ++ common_words ++ space_glossary
 
 #using combinations to generate names from the final list
-
+generated = PnC.comb_helper(final, 2, 4, []) |> Enum.map(Enum.join(" "))
 
 #File.write("words3.txt", Enum.join(final, "\n"))

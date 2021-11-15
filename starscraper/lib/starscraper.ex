@@ -100,7 +100,7 @@ defmodule Starscraper do
             Enum.fetch!(a, 0)
         end
     end) |> Enum.filter(
-      fn x -> is_binary(x) && String.length(x) > 0 end)
+      fn x -> is_binary(x) && String.length(x) > 2 end)
   end
 
   @doc """
