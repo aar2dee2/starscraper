@@ -1,5 +1,6 @@
 { pkgs }: {
 	deps = [
-		pkgs.elixir
+		pkgs.elixir,
+    pkgs.imagemagick
 	];
 }
