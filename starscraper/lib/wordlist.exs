@@ -28,8 +28,10 @@ space_glossary =  doc |> String.split("\n")
 IO.puts("got space_glossary terms from .txt file")
 
 final = spacecraft_words ++ constellations ++ common_words ++ space_glossary
-l = length(final)
+File.write("all_words.txt", Enum.join(final, "\n"))
 IO.puts("got final words list")
+
+l = length(final)
 #using combinations to generate names from the final list
 #generated = PnC.comb_helper(final, 2, 4, []) |> Enum.map(Enum.join(" "))
 #using the random function here to generate a tuple with indexes, and then a list of 2-word names based on those indexes
