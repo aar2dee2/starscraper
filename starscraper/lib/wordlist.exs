@@ -28,11 +28,17 @@ space_glossary =  doc |> String.split("\n")
 IO.puts("got space_glossary terms from .txt file")
 
 final = spacecraft_words ++ constellations ++ common_words ++ space_glossary
-
+l = length(final)
 IO.puts("got final words list")
 #using combinations to generate names from the final list
-generated = PnC.comb_helper(final, 2, 4, []) |> Enum.map(Enum.join(" "))
-
+#generated = PnC.comb_helper(final, 2, 4, []) |> Enum.map(Enum.join(" "))
+#using the random function here to generate a tuple with indexes, and then a list of 2-word names based on those indexes
+#Seeding the random function
+:rand.seed(:exs1024, :erlang.timestamp())
+#Number of names to be generated
+n = 500
+#indexes = Enum.map(1..n,fn x -> {:rand.uniform(l), :rand.uniform(l)} end)
+generated = Enum.map(1..n, fn x -> Enum.fetch!(final, :rand.uniform(l) - 1) <> " " <> Enum.fetch!(final, :rand.uniform(l) - 1) <> " " <> Enum.fetch!(final, :rand.uniform(l) - 1) end)
 IO.puts("generated spacecraft names")
 
 File.write("spaceship.txt", Enum.join(generated, "\n"))
