@@ -12,3 +12,10 @@ ships,
 
 )
 
+%Mogrify.Image{path: "background.png", ext: "png"}
+|> custom("size", "1920x1080")
+|> custom("gravity", "center")
+|> custom("fill", "white")
+|> custom("font", "DejaVu-Sans-Mono-Bold")
+|> custom("annotate", Enum.fetch!(ships, 0))
+|> create(path: ".")

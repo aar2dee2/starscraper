@@ -11,3 +11,10 @@ Starscraper is a spacecraft name NFT generator that:
   
   ---
   __Note:__ ImageMagick has been added as a Nix package in `replit.nix`
+
+  To check that `ImageMagick` is working type the following commands in the terminal
+  ```
+  magick logo: logo.gif
+  identify logo.gif
+  display logo.gif
+  ```
