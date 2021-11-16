@@ -28,7 +28,7 @@ space_glossary =  doc |> String.split("\n")
 IO.puts("got space_glossary terms from .txt file")
 
 final = spacecraft_words ++ constellations ++ common_words ++ space_glossary
-File.write("all_words.txt", Enum.join(final, "\n"))
+#File.write("all_words.txt", Enum.join(final, "\n"))
 IO.puts("got final words list")
 
 l = length(final)
