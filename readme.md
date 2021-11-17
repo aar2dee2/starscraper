@@ -1,6 +1,6 @@
-# Starscraper
+# Star Cruiser NFT
 
-Starscraper is a spacecraft name NFT generator that:
+Star Cruiser NFT is a text-based NFT generator for generating spacecraft names. It:
   - fetches names of constellations, fictional spacecraft and common space terms from web links using the [HTTPoison](https://github.com/edgurgel/httpoison) and [Floki](https://github.com/philss/floki) libraries
   - creates a list of words from these names using Elixir standard library functions
   - generates names for spacecraft based on combinations of words from the list above - using the `erlang random` module here.
