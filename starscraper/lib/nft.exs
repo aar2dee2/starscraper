@@ -32,9 +32,9 @@ IO.puts("got space_glossary terms from .txt file")
 
 # ------------------------------------
 
-rejected = ["(UT)", "Time", "Woman", "LCAM", "owned", "by", "which",  "terraforming", "planets", "mission", "shot", "down", "when", "attempting", "maneuver", "around", "planet", "Trip", "Private", "UNSC", "with", "type", "Vehicle", "Escape", "Space", "Earth", "Toon", "News", "Network", "Zone", "Gamer", "comic", "watch", ]
+rejected = ["(UT)", "Time", "Woman", "LCAM", "owned", "by", "which",  "terraforming", "planets", "mission", "shot", "down", "when", "attempting", "maneuver", "around", "planet", "Trip", "Private", "UNSC", "with", "type", "Vehicle", "Escape", "Space", "Earth", "Toon", "News", "Network", "Zone", "Gamer", "comic", "watch", "Young"]
 final = (spacecraft_words ++ constellations ++ space_glossary) |> Enum.filter(fn x -> !Enum.member?(rejected, x) end)
-File.write("text_files/all_words.txt", Enum.join(final, "\n"))
+#File.write("text_files/all_words.txt", Enum.join(final, "\n"))
 IO.puts("got final words list")
 
 # ------------------------------------
@@ -54,9 +54,9 @@ fn x -> Enum.fetch!(final, :rand.uniform(l) - 1) <> " " <> Enum.fetch!(final, :r
 
 IO.puts("generated spacecraft names")
 
-File.write("text_files/spaceship.txt", Enum.join(generated, "\n"))
+#File.write("text_files/spaceship.txt", Enum.join(generated, "\n"))
 
-IO.puts("created spaceship.txt")
+#IO.puts("created spaceship.txt")
 
 # ------------------------------------
 # Generating images
@@ -81,10 +81,10 @@ generated,
   fn x -> 
     #taking image details from img, but changing the path to relative path
     %{img | path: "./images/background.jpg"}
-      |> Mogrify.custom("pointsize", 200)
+      |> Mogrify.custom("pointsize", 120)
       |> Mogrify.custom("fill", "white")
       |> Mogrify.custom("font", "DejaVu-Sans-Mono-Bold")
-      |> Mogrify.custom("annotate", "+250+600 #{x}")
+      |> Mogrify.custom("annotate", "+50+600 #{x}")
       |> Mogrify.save(path: "./nfts/" <> String.downcase(x) <> ".jpg")
     
   end
