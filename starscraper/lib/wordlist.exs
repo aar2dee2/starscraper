@@ -27,8 +27,10 @@ space_glossary =  doc |> String.split("\n")
 
 IO.puts("got space_glossary terms from .txt file")
 
-final = spacecraft_words ++ constellations ++ common_words ++ space_glossary
-#File.write("all_words.txt", Enum.join(final, "\n"))
+#rejected = ["5", "in", "The", "(UT)", "Time", "and", "Woman", "A", "to", "the", "LCAM", "owned", "by", "which", "had", "of", "terraforming", "planets", "but", "was", "mission", "shot", "down", "when", "attempting", "a", "maneuver", "around", "planet", ]
+final = (spacecraft_words ++ constellations ++ common_words ++ space_glossary) 
+#|> Enum.filter(fn x -> !Enum.member?(rejected, x) end)
+File.write("all_words.txt", Enum.join(final, "\n"))
 IO.puts("got final words list")
 
 l = length(final)
@@ -40,7 +42,7 @@ l = length(final)
 #Number of names to be generated
 n = 500
 #indexes = Enum.map(1..n,fn x -> {:rand.uniform(l), :rand.uniform(l)} end)
-generated = Enum.map(1..n, fn x -> Enum.fetch!(final, :rand.uniform(l) - 1) <> " " <> Enum.fetch!(final, :rand.uniform(l) - 1) <> " " <> Enum.fetch!(final, :rand.uniform(l) - 1) end)
+generated = Enum.map(1..n, fn x -> Enum.fetch!(final, :rand.uniform(l) - 1) <> " " <> Enum.fetch!(final, :rand.uniform(l) - 1) end)
 IO.puts("generated spacecraft names")
 
 File.write("spaceship.txt", Enum.join(generated, "\n"))

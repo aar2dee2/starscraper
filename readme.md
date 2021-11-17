@@ -18,3 +18,16 @@ Starscraper is a spacecraft name NFT generator that:
   identify logo.gif
   display logo.gif
   ```
+
+  When using the annotate option in `Mogrify.custom/3`, must add the value of x & y offsets along with txt as `+25+45 #{text}` - `25` is the x offset and `45` is the y offset here. Also, the `pointsize` option needs to be set, else the font is too small and you will not see any text on the image.
+
+  Helpful links for mogrify:
+  - [SO Adding text to an image with Elixir Mogrify](https://stackoverflow.com/questions/57416721/adding-text-to-an-image-with-elixir-mogrify)
+  -  [Image resizing and uploading with Mogrify](https://elixirforum.com/t/image-resizing-and-uploading-to-s3-bucket-with-mogrify-image-not-resized/27754)
+  - (https://stackoverflow.com/questions/45915567/generating-image-in-elixir-with-text)
+  - [Mogrify hexdocs](https://hexdocs.pm/mogrify/Mogrify.html#content)
+  - [Adding fonts for ImageMagick](https://legacy.imagemagick.org/Usage/scripts/imagick_type_gen)
+ - [On missing fonts](https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=34911)
+  - [ImageMagick Annotate command usage](https://legacy.imagemagick.org/Usage/annotating/#anno_on)
+  - [SO link for adding text to image using ImageMagick](https://stackoverflow.com/questions/23236898/add-text-on-image-at-specific-point-using-imagemagick)
+  - [X, Y Offsets and Angle in the Annotate command](https://www.php.net/manual/en/imagick.annotateimage.php)

@@ -108,7 +108,7 @@ defmodule Starscraper do
   """
   def extract_words(l) do
     Enum.map(l, &String.split(&1, [" ", "@", "$", ",", "!", "#", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", ";", ":", "'", ".", "/", "?", "|", "\\"])) |> List.flatten() |> Enum.filter(
-      fn x -> !Regex.match?(~r{[^a-z|A-Z]}, x) && x != "" && x != " " end
+      fn x -> !Regex.match?(~r{[^a-z|A-Z]}, x) && x != "" && x != " "  && String.length(x) > 3 end
       )
   end
 end
