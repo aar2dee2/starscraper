@@ -18,6 +18,11 @@ When you click run, you will prompted to enter the number of NFTs required in th
 
 The images will show up in `starscraper/nfts`
 
+Two text files `all_words.txt` and `spaceship.txt` will also be generated in the `text_files` folder.
+
+If you do multiple runs, the `all_words.txt` and `spaceship.txt` files will be overwritten, but new nfts will keep getting added to the `generated` folder
+
+If you want to repeat runs without compiling deps each time, type `mix run lib/nft.exs` in the Shell when you're in the `starscraper/starscraper` directory.
   
   ---
   __Note:__ ImageMagick has been added as a Nix package in `replit.nix`

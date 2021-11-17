@@ -5,5 +5,4 @@ cd starscraper
 mix deps.get
 mix deps.compile
 
-mix run lib/wordlist.exs
-#iex -S mix <<< c "lib/wordlist.exs"
+mix run lib/nft.exs
