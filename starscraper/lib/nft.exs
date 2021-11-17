@@ -32,7 +32,7 @@ IO.puts("got space_glossary terms from .txt file")
 
 # ------------------------------------
 
-rejected = ["(UT)", "Time", "Woman", "LCAM", "owned", "by", "which",  "terraforming", "planets", "mission", "shot", "down", "when", "attempting", "maneuver", "around", "planet", "Trip", "Private", "UNSC", "with", "type", "Vehicle", "Escape", "Space", "Earth", "Toon", "News", "Network", "Zone", "Gamer", "comic", "watch", "Young"]
+rejected = ["(UT)", "Time", "Woman", "LCAM", "owned", "by", "which",  "terraforming", "planets", "mission", "shot", "down", "when", "attempting", "maneuver", "around", "planet", "Trip", "Private", "UNSC", "with", "type", "Vehicle", "Escape", "Space", "Earth", "Toon", "News", "Network", "Zone", "Gamer", "comic", "watch", "Young", "Effect", "effect"]
 final = (spacecraft_words ++ constellations ++ space_glossary) |> Enum.filter(fn x -> !Enum.member?(rejected, x) end)
 #File.write("text_files/all_words.txt", Enum.join(final, "\n"))
 IO.puts("got final words list")
@@ -46,7 +46,7 @@ l = length(final)
 #Seeding the random function
 :rand.seed(:exs1024, :erlang.timestamp())
 #Number of names to be generated
-n = 25
+n = IO.gets("enter the number of NFTs: ") |> String.trim() |> String.to_integer()
 
 generated = Enum.map(
 1..n, 
