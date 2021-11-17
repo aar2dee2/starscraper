@@ -21,13 +21,6 @@ IO.puts("got constellation names from wikipedia")
 
 # ------------------------------------
 
-#creating a list of common_words. Can be updated
-common_words = [
-"Battle", "Star", "Galactic", "Ship", "Craft", "Destroyer", "Cruiser", "Bruiser", "Black", "Hole", "Flight", "Copter", "Mighty", "Large", "Asteroid", "Lens",
-]
-
-# ------------------------------------
-
 #getting terms from space_glossary.txt
 doc = case File.read("space_glossary.txt") do
     {:ok, body} -> body
@@ -40,7 +33,7 @@ IO.puts("got space_glossary terms from .txt file")
 # ------------------------------------
 
 rejected = ["(UT)", "Time", "Woman", "LCAM", "owned", "by", "which",  "terraforming", "planets", "mission", "shot", "down", "when", "attempting", "maneuver", "around", "planet", "Trip", "Private", "UNSC", "with", "type", "Vehicle", "Escape", "Space", "Earth", "Toon", "News", "Network", "Zone", "Gamer", "comic", "watch", ]
-final = (spacecraft_words ++ constellations ++ common_words ++ space_glossary) |> Enum.filter(fn x -> !Enum.member?(rejected, x) end)
+final = (spacecraft_words ++ constellations ++ space_glossary) |> Enum.filter(fn x -> !Enum.member?(rejected, x) end)
 File.write("all_words.txt", Enum.join(final, "\n"))
 IO.puts("got final words list")
 
@@ -92,7 +85,7 @@ generated,
       |> Mogrify.custom("fill", "white")
       |> Mogrify.custom("font", "DejaVu-Sans-Mono-Bold")
       |> Mogrify.custom("annotate", "+250+600 #{x}")
-      |> Mogrify.save(path: "./images/" <> String.downcase(x) <> ".jpg")
+      |> Mogrify.save(path: "./nfts/" <> String.downcase(x) <> ".jpg")
     
   end
 )

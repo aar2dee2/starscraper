@@ -1,12 +1,22 @@
 # Starscraper
 
-[![Run on Repl.it](https://repl.it/badge/github/aar2dee2/starscraper)](https://repl.it/github/aar2dee2/starscraper)
-
 Starscraper is a spacecraft name NFT generator that:
   - fetches names of constellations, fictional spacecraft and common space terms from web links using the [HTTPoison](https://github.com/edgurgel/httpoison) and [Floki](https://github.com/philss/floki) libraries
   - creates a list of words from these names using Elixir standard library functions
   - generates names for spacecraft based on combinations of words from the list above - using the `erlang random` module here.
   - creates a jpeg for each name selected using the [mogrify](https://github.com/elixir-mogrify/mogrify) library and [ImageMagick](http://www.imagemagick.org/script/index.php)
+
+# To Run
+
+[![Run on Repl.it](https://repl.it/badge/github/aar2dee2/starscraper)](https://repl.it/github/aar2dee2/starscraper)
+
+Click on the button above to Run. 
+
+The images will be created using `background.jpg` in `starscraper/images`. To use a different image backgound, upload your file to the `starscraper/images` folder and rename it to backgound.jpg (you can delete the file already provided.)
+
+When you click run, you will prompted to enter the number of NFTs required in the console. Enter a valid integer only. Since, this project involves image generation, a large number may take a long while to process. Ideally run for 50 or less NFTs in one go.
+
+The images will show up in `starscraper/nfts`
 
   
   ---
