@@ -92,7 +92,7 @@ generated,
       |> Mogrify.custom("fill", "white")
       |> Mogrify.custom("font", "DejaVu-Sans-Mono-Bold")
       |> Mogrify.custom("annotate", "+250+600 #{x}")
-      |> save(path: "./images/" <> String.downcase(x) <> ".jpg")
+      |> Mogrify.save(path: "./images/" <> String.downcase(x) <> ".jpg")
     
   end
 )
